@@ -1,10 +1,10 @@
-import logo from './logo.svg';
+import {Hero} from './Hero';
 
 
 export function App() {
-  return (
-      <div>
-        Welcome!
-      </div>
-  );
+    return (
+        <>
+            <Hero/>
+        </>
+    );
 }

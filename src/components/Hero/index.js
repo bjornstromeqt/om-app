@@ -10,9 +10,9 @@ export function Hero({title, content, theme}){
                     <p className="title">
                         {title}
                     </p>
-                    <p className="subtitle">
+                    <div className="subtitle">
                         {content}
-                    </p>
+                    </div>
                 </div>
             </div>
 

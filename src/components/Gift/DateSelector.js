@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import {useSheets} from './useSheets';
+
 
 const AVAILABLE_DATES = [
     '2021-10-10',
@@ -10,6 +12,9 @@ const AVAILABLE_DATES = [
 
 
 export function DateSelector() {
+    const data = useSheets();
+
+    console.log(data);
 
     return (
         <Wrapper>

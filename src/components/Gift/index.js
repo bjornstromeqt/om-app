@@ -17,7 +17,7 @@ export function Gift() {
             <DateSelector/>
             <hr/>
             <p className={'content'}>
-                Varma lyckoönskningar ❣<br/>
+                Varma lyckoönskningar ❣️<br/>
                 <i>
                 Björn, Hanna, Tom och Jeanna
                 </i>

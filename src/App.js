@@ -5,19 +5,27 @@ import {Spinner} from './components/Spinner';
 import {Gift} from './components/Gift';
 
 
+const passwords = [
+    '5yRSjtQN',
+    'test'
+];
+
+
 export function App() {
     const [password, setPassword] = useState('');
     const [isLoading, setLoading] = useState(true);
+    const [hasCorrectPassword, setCorrectPassword] = useState(false);
 
     useEffect(() => {
-        if (password === 'om') {
+        if (passwords.find(item => item === password)) {
+            setCorrectPassword(true);
             window.setTimeout(() => {
                 setLoading(false);
             }, 1500);
         }
     }, [password]);
 
-    if (password === 'om' && isLoading) {
+    if (hasCorrectPassword && isLoading) {
         return (
             <Hero
                 title={' '}
@@ -28,7 +36,7 @@ export function App() {
         );
     }
 
-    if (password === 'om' ) {
+    if (hasCorrectPassword) {
         return (
             <Hero
                 theme={'is-info'}

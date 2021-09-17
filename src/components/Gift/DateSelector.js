@@ -1,36 +1,47 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import {useSheets} from './useSheets';
-
-
-const AVAILABLE_DATES = [
-    '2021-10-10',
-    '2021-10-11',
-    '2021-10-17',
-    '2021-10-18',
-    '2021-10-20'
-];
+import {useSelectDate} from './utils';
+import {Spinner} from '../Spinner';
 
 
 export function DateSelector() {
-    const data = useSheets();
+    const [selectDate, state] = useSelectDate();
+    const {data, isLoading, error} = state;
 
-    console.log(data);
+    console.log(state);
+
+    if (error) {
+        return (
+            <div>Failed to load dates.</div>
+        );
+    }
+
+    if (isLoading) {
+        return (
+            <Spinner color={'#fff'}/>
+        );
+    }
 
     return (
         <Wrapper>
-            {AVAILABLE_DATES.map((dateString) => (
-                <Row key={dateString}>
+            {data.map((row, index) => (
+                <Row key={row.date} isSelected={!!row.selected}>
                     <Column>
-                        {(new Date(dateString)).toISOString().slice(0, 10)}
+                        {(new Date(row.date)).toISOString().slice(0, 10)}
                     </Column>
-                    <Column>
-                        <button className={'button is-small'}>
-                            Välj
-                        </button>
+                    <Column isCentered={true}>
+                        {row.selected ? 'Vald!' : (
+                            <button
+                                className={'button is-small'}
+                                disabled={!!row.selected}
+                                onClick={selectDate.bind(null, index + 1)}
+                            >
+                                Välj
+                            </button>
+                        )}
                     </Column>
                 </Row>
             ))}
-
         </Wrapper>
     );
 }
@@ -38,14 +49,36 @@ export function DateSelector() {
 
 const Wrapper = styled.div`
     margin: 20px auto;
+    font-size: 80%;
 `;
 
 const Row = styled.div`
     display: flex;
+    padding: 4px 0;
+    margin: 4px 0;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    :first-child {
+        border-top: 1px solid rgba(255,255,255, 0.1);
+    }
+    ${({isSelected}) => isSelected ? `
+        color: #85e485;
+        font-weight: bold;
+    ` : ''};
 `;
+
+Row.propTypes = {
+    isSelected: PropTypes.bool
+}
 
 const Column = styled.div`
     flex: 1;
     padding-right: 20px;
+    ${(props) => props.isCentered ? `
+        text-align: center;
+    ` : ``};
 `;
 
+Column.propTypes = {
+    isCentered: PropTypes.bool
+}

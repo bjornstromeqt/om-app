@@ -1,31 +1,42 @@
-import {useEffect, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import axios from 'axios';
 
 
 export function useSelectDate() {
   const [state, setState] = useState({data: [], isLoading: true, error: null});
 
-  useEffect(() => {
-    selectDate('', (data) => {
-      setState({data: data, isLoading: false, error: null});
-    }, (error => {
-      setState({data: [], isLoading: false, error: error})
-    }))
-  });
+  const handleSuccess = useCallback((data) => {
+    setState({data: data, isLoading: false, error: null});
+  }, [setState]);
 
-  return state
+  const handleError = useCallback((error) => {
+    setState({data: [], isLoading: false, error: error});
+  }, [setState]);
+
+
+  const selectDate = useCallback((option) => {
+    setState({isLoading: true});
+    makeRequest(option, handleSuccess, handleError);
+  }, [handleSuccess, handleError]);
+
+  useEffect(() => {
+    console.log('Use effect!');
+    makeRequest('', handleSuccess, handleError);
+  }, [handleError, handleSuccess]);
+
+  return [selectDate, state];
 }
 
 
-function selectDate(option = '', onSuccess, onError) {
+function makeRequest(option = '', onSuccess, onError) {
+  console.log('Make request!');
+
   const url = 'https://script.google.com/macros/s/AKfycbx5k_fnpRyoZJ_XwHLIXJkoF4C50ywdNlOa4TXUoh_KG4vUq6pNMGm8CtZ7xRfHX6CQ/exec';
   const options = {params: {option: option}};
   axios(url, options).then(response => {
-    console.log(response);
-    onSuccess(response);
+    onSuccess(response.data);
   }).catch(error => {
-    console.log(error);
-    onError(onError);
+    console.error(error);
+    onError(error);
   })
-
 }

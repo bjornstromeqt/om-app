@@ -21,7 +21,7 @@ export function App() {
             setCorrectPassword(true);
             window.setTimeout(() => {
                 setLoading(false);
-            }, 1500);
+            }, 1000);
         }
     }, [password]);
 

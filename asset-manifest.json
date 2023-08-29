@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/om-app/static/js/main.243a2073.chunk.js",
-    "main.js.map": "/om-app/static/js/main.243a2073.chunk.js.map",
+    "main.js": "/om-app/static/js/main.831dbb05.chunk.js",
+    "main.js.map": "/om-app/static/js/main.831dbb05.chunk.js.map",
     "runtime-main.js": "/om-app/static/js/runtime-main.1eef4276.js",
     "runtime-main.js.map": "/om-app/static/js/runtime-main.1eef4276.js.map",
     "static/js/2.2a0230da.chunk.js": "/om-app/static/js/2.2a0230da.chunk.js",
@@ -14,6 +14,6 @@
   "entrypoints": [
     "static/js/runtime-main.1eef4276.js",
     "static/js/2.2a0230da.chunk.js",
-    "static/js/main.243a2073.chunk.js"
+    "static/js/main.831dbb05.chunk.js"
   ]
 }

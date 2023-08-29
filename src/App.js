@@ -7,7 +7,8 @@ import {Gift} from './components/Gift';
 
 const passwords = [
     '5yRSjtQN',
-    'test'
+    'test',
+    'ÖppetSinne4Ever'
 ];
 
 

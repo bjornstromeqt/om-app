@@ -7,19 +7,19 @@ export function Gift() {
     return (
         <Wrapper>
             <p className={'content'}>
-                Stort grattis på eran bröllopsdag!
+                Ni är bäst! Som ett litet tack för att ni låtit oss vara en del av världens finaste bröllopshelg så vill vi bjuda tillbaka på en helkväll i Stockholm.
             </p>
             <p className={'content'}>
-                Då vi vill spendera mer tid med er så vill vi bjuda er på en helkväll i Stockholm.
-                Nedan finns några förslag på datum.
+                Nedan finns några förslag på datum. Välj de som passar
             </p>
+
             <hr/>
             <DateSelector/>
             <hr/>
             <p className={'content'}>
-                Varma lyckoönskningar ❣️<br/>
+                Varma hälsningar ❣️<br/>
                 <i>
-                Björn, Hanna, Tom och Jeanna
+                    Olga, Mårten, Maria, Carl och Joel
                 </i>
             </p>
         </Wrapper>
@@ -28,5 +28,5 @@ export function Gift() {
 
 
 const Wrapper = styled.div`
-    max-width: 480px;
+  max-width: 480px;
 `;

@@ -40,7 +40,7 @@ export function App() {
         return (
             <Hero
                 theme={'is-info'}
-                title={'🌟 Olga & Mårten 🌟'}
+                title={'❤️Linnea & Albert ❤️'}
                 content={(
                     <Gift/>
                 )}

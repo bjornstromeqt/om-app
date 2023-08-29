@@ -29,9 +29,7 @@ export function useSelectDate() {
 
 
 function makeRequest(option = '', onSuccess, onError) {
-  console.log('Make request!');
-
-  const url = 'https://script.google.com/macros/s/AKfycbx5k_fnpRyoZJ_XwHLIXJkoF4C50ywdNlOa4TXUoh_KG4vUq6pNMGm8CtZ7xRfHX6CQ/exec';
+  const url = 'https://script.google.com/macros/s/AKfycbwh0auXg6yFVoZq357_ktVUV6F37X5GP79eclDMiEyU7qMYbWkbTLuFIun0ZhRtR-JU/exec';
   const options = {params: {option: option}};
   axios(url, options).then(response => {
     onSuccess(response.data);

@@ -15,22 +15,33 @@ export function useSelectDate() {
 
 
   const selectDate = useCallback((option) => {
-    setState({isLoading: true});
-    makeRequest(option, handleSuccess, handleError);
-  }, [handleSuccess, handleError]);
+    const newState = Object.assign({}, state, {isLoading: true});
+    setState(newState);
+    const params = {select: option};
+    makeRequest(params, handleSuccess, handleError);
+  }, [state, handleSuccess, handleError]);
+
+  const deselectDate = useCallback((option) => {
+    const newState = Object.assign({}, state, {isLoading: true});
+    setState(newState);
+
+    const params = {deselect: option};
+    makeRequest(params, handleSuccess, handleError);
+  }, [state, handleSuccess, handleError]);
+
 
   useEffect(() => {
     console.log('Use effect!');
     makeRequest('', handleSuccess, handleError);
   }, [handleError, handleSuccess]);
 
-  return [selectDate, state];
+  return [selectDate, deselectDate, state];
 }
 
 
-function makeRequest(option = '', onSuccess, onError) {
-  const url = 'https://script.google.com/macros/s/AKfycbwh0auXg6yFVoZq357_ktVUV6F37X5GP79eclDMiEyU7qMYbWkbTLuFIun0ZhRtR-JU/exec';
-  const options = {params: {option: option}};
+function makeRequest(params = null, onSuccess, onError) {
+  const url = 'https://script.google.com/macros/s/AKfycbxx3g3QtxAkSQUhCJ7GrzJ2Hs-viyYnJB4F-1ipYDLniEME3Y7AAAo9Ptx7xTvNXcRu/exec';
+  const options = {params: params};
   axios(url, options).then(response => {
     onSuccess(response.data);
   }).catch(error => {
